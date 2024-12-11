@@ -1,8 +1,25 @@
 {% extends 'base.html' %}
 
 
-{% load cms_tags sekizai_tags static %}
+{% load cms_tags menu_tags sekizai_tags static %}
 
+{% block navbar %}
+    <nav style="background:#fff !important; padding: 0 !important;" class="navbar {% block navbar_options %}navbar-expand-lg navbar-dark bg-dark{% endblock %}">
+        <div class="container">
+            <a class="navbar-brand" href="/"><img style="height: 50px; padding: 10px;margin-right:20px;box-sizing: content-box;" src="/static/global/img/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">{% block menubar %}{% show_menu 0 100 100 100 'menu/menu.html' %}{% endblock %}</ul>
+                {% block searchbar %}{% endblock %}
+                <!-- <django-formset …>
+                    <input class="formset-text-input" form="id_registerpersonform" type="text" placeholder="搜索">
+                </django-formset> -->
+            </div>
+        </div>
+    </nav>
+{% endblock %}
 
 {% block content %}
     <main>

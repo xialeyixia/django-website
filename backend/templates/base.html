@@ -33,7 +33,7 @@
     {% endfor %}
 
     <script>
-        const DJANGO_ENV = '{{ settings.DJANGO_ENV.value }}';
+        DJANGO_ENV = '{{ settings.DJANGO_ENV.value }}';
         document.addEventListener('DOMContentLoaded', function () {
             if (window.django) {
                 window.django.env = '{{ settings.DJANGO_ENV.value }}';
@@ -81,7 +81,7 @@
 {#        {% gtm_body settings.GTM_CONTAINER_ID %}#}
 
 {% cms_toolbar %}
-
+{% block navbar %}{% endblock %}
 {% block content_before %}{% endblock %}
 
 <div class="container">

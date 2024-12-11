@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 from django_storage_url import dsn_configured_storage_class
 from link_all.dataclasses import LinkAllModel
 from enumfields import Enum as EnumFields
-
+ 
 
 ################################################################################
 # divio
@@ -42,7 +42,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'backend.settings'
 
 BASE_DIR: str = locals()['BASE_DIR']
 
-# environ.Env.read_env(os.path.join(BASE_DIR, '.local-env'))  # Uncomment if you use local setup without docker
+environ.Env.read_env(os.path.join(BASE_DIR, '.local-env'))  # Uncomment if you use local setup without docker
 DOMAIN: str = locals().get('DOMAIN', 'localhost')
 SITE_NAME: str = locals().get('SITE_NAME', 'dev testing site')
 
@@ -55,7 +55,7 @@ USE_TZ = True
 TIME_ZONE = 'Europe/Zurich'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = env.bool('DEBUG', default=True)
 # you can use this on the live environment to get the full exception stack trace in the logs
 DEBUG_PROPAGATE_EXCEPTIONS = env.bool('DEBUG_PROPAGATE_EXCEPTIONS', default=False)
 # this is set by Divio environment automatically
@@ -73,6 +73,9 @@ installed_apps_overrides = [
     'backend.auth',
 
     'backend.blog',
+
+    'backend.products',
+    
 
     'djangocms_modules',
 ]
@@ -92,7 +95,6 @@ INSTALLED_APPS.extend([
     'django.contrib.admin',
 
     'aldryn_sso',  # aldryn_sso must be after django.contrib.admin so it can unregister the User/Group Admin if necessary.
-
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -108,6 +110,8 @@ INSTALLED_APPS.extend([
     'treebeard',
     'sekizai',
 
+    
+    
     'gtm',
     'solo',
     'rest_framework',
@@ -123,13 +127,15 @@ INSTALLED_APPS.extend([
     'djangocms_helpers.sentry_500_error_handler',
 
     'robots',
-
+    'djangocms_link',
     # django cms
 
     'djangocms_bootstrap4',
+    'djangocms_bootstrap4.contrib.bootstrap4_link',
     'djangocms_bootstrap4.contrib.bootstrap4_alerts',
     'djangocms_bootstrap4.contrib.bootstrap4_badge',
     'djangocms_bootstrap4.contrib.bootstrap4_card',
+    'djangocms_bootstrap4.contrib.bootstrap4_carousel',
     'djangocms_bootstrap4.contrib.bootstrap4_collapse',
     'djangocms_bootstrap4.contrib.bootstrap4_content',
     'djangocms_bootstrap4.contrib.bootstrap4_grid',
@@ -142,9 +148,9 @@ INSTALLED_APPS.extend([
     'djangocms_bootstrap4.contrib.bootstrap4_picture',
     'aldryn_apphooks_config',
     'djangocms_blog',
-        'taggit',
-        'taggit_autosuggest',
-        'sortedm2m',
+    'taggit',
+    'taggit_autosuggest',
+    'sortedm2m',
     'djangocms_icon',
     'djangocms_text_ckeditor',
     'djangocms_googlemap',
@@ -178,6 +184,7 @@ INSTALLED_APPS.extend([
     'backend.plugins.bs4_inline_alignment',
     'backend.plugins.bs4_spacer',
     'backend.plugins.horizontal_line',
+    'backend.plugins.product_plugin',
 
     ## BEWARE: any application added here will not show their models in django admin UNLESS you configure them below in the ADMIN_REORDER setting.
 ])
@@ -267,9 +274,10 @@ if DJANGO_ENV == DjangoEnv.LOCAL:
 CACHES = {'default': django_cache_url.config(default="dummy://")}
 
 
-SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=True)
+# SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=True)
+SECURE_SSL_REDIRECT = False
 # PREPEND_WWW = True (if you want to redirect domain.com/... to www.domain.com/...
-HTTP_PROTOCOL = env.str('HTTP_PROTOCOL', 'https')
+HTTP_PROTOCOL = env.str('HTTP_PROTOCOL', 'http')
 
 
 STATICFILES_DIRS = [
@@ -285,13 +293,13 @@ WHITENOISE_MAX_AGE = STATICFILES_DEFAULT_MAX_AGE
 # Media files
 # DEFAULT_FILE_STORAGE is configured using DEFAULT_STORAGE_DSN
 # read the setting value from the environment variable
-DEFAULT_STORAGE_DSN = env.str('DEFAULT_STORAGE_DSN', default='file:///data/media/?url=%2Fmedia%2F')
+# DEFAULT_STORAGE_DSN = env.str('DEFAULT_STORAGE_DSN', default=os.path.join(BASE_DIR, '/media/') + '?url=%2Fmedia%2F')
 # dsn_configured_storage_class() requires the name of the setting
-DefaultStorageClass = dsn_configured_storage_class('DEFAULT_STORAGE_DSN')
+# DefaultStorageClass = dsn_configured_storage_class('DEFAULT_STORAGE_DSN')
 # Django's DEFAULT_FILE_STORAGE requires the class name
-DEFAULT_FILE_STORAGE = 'backend.settings.DefaultStorageClass'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'data/media/')
+# DEFAULT_FILE_STORAGE = 'backend.settings.DefaultStorageClass'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediaw/')
 
 
 # allauth
@@ -318,7 +326,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 GTM_CONTAINER_ID = env.str('GTM_CONTAINER_ID', 'GTM-1234')
 
-WEBPACK_DEV_URL = env.str('WEBPACK_DEV_URL', default='http://0.0.0.0:8090')
+WEBPACK_DEV_URL = env.str('WEBPACK_DEV_URL', default='http://127.0.0.1:8090')
 
 
 SENTRY_DSN = env.str('SENTRY_DSN', '')
@@ -347,6 +355,7 @@ ADMIN_REORDER = [
             'backend_auth.User',
             'aldryn_sso.AldrynCloudUser',
             'auth.Group',
+            
         ],
     },
     {
@@ -355,22 +364,23 @@ ADMIN_REORDER = [
         'models': [
             'cms.Page',
             {'model': 'filer.Folder', 'label': 'Media'},
-            'djangocms_redirect.Redirect',
+            # 'djangocms_redirect.Redirect',
             {'model': 'aldryn_forms.FormSubmission', 'label': 'Dynamic forms submissions'},
+            'backend_products.Product'
         ],
     },
     {
-        'label': 'Blog',
-        'app': 'djangocms_blog',
+        'label': 'News',
+        'app': 'djangocms_blog'
     },
     {
         'label': 'System Administration',
         'app': 'cms',
         'models': [
-            {'model': 'sites.Site', 'label': 'Websites'},
-            {'model': 'djangocms_modules.Category', 'label': 'Plugin modules categories'},
+            # {'model': 'sites.Site', 'label': 'Websites'},
+            # {'model': 'djangocms_modules.Category', 'label': 'Plugin modules categories'},
             {'model': 'djangocms_snippet.Snippet', 'label': 'HTML snippets'},
-            'admin.LogEntry',
+            # 'admin.LogEntry',
 
             # removed because it doesn't work on cms 3.7.3
             # 'cms.GlobalPagePermission',
@@ -378,14 +388,14 @@ ADMIN_REORDER = [
             # 'cms.PageUser',
         ],
     },
-    {
-        'label': 'SEO',
-        'app': 'cms',
-        'models': [
-            {'model': 'robots.Rule', 'label': 'Access rules for robots.txt'},
-            {'model': 'robots.Url', 'label': 'Urls patterns for robots.txt'},
-        ],
-    },
+    # {
+    #     'label': 'SEO',
+    #     'app': 'cms',
+    #     'models': [
+    #         {'model': 'robots.Rule', 'label': 'Access rules for robots.txt'},
+    #         {'model': 'robots.Url', 'label': 'Urls patterns for robots.txt'},
+    #     ],
+    # },
 ]
 
 
@@ -476,11 +486,11 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'  # for the iframe-embedded django admin
 
 CMS_PERMISSION = True
 
-LANGUAGE_CODE = "en"
+LANGUAGE_CODE = "zh-hans"
 
 LANGUAGES = [
     ('en', "English"),
-    ('de', "German"),
+    ('zh-hans', "简体中文"),
 ]
 CMS_LANGUAGES = {
     SITE_ID: [
@@ -489,12 +499,12 @@ CMS_LANGUAGES = {
             'name': 'English',
         },
         {
-            'code': 'de',
-            'name': 'German',
+            'code': 'zh-hans',
+            'name': '简体中文',
         },
     ],
     'default': {
-        'fallbacks': ['en', 'de'],
+        'fallbacks': ['en', 'zh-hans'],
         'redirect_on_fallback': True,
         'public': True,
         'hide_untranslated': False,
@@ -666,7 +676,7 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters',
 )
-THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE  # easy-thumbnails does not respect DEFAULT_FILE_STORAGE
+# THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE  # easy-thumbnails does not respect DEFAULT_FILE_STORAGE
 
 # divio.com SSO - this is only relevant if you deploy to divio.com
 ALDRYN_SSO_HIDE_USER_MANAGEMENT = False

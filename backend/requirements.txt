@@ -546,7 +546,7 @@ urllib3==1.26.16
     #   sentry-sdk
 urlobject==2.4.3
     # via django-spurl
-uwsgi==2.0.22
+uwsgi==2.0.28
     # via -r requirements.in
 wcwidth==0.2.6
     # via prompt-toolkit

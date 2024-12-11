@@ -1,0 +1,4 @@
+{% load i18n easy_thumbnails_tags cms_tags %}
+{% thumbnail instance.image 1200x380 crop upscale as thumb %}
+<img src="{{ thumb.url }}" alt="" />
+<div>{{instance.product.description}}</div>

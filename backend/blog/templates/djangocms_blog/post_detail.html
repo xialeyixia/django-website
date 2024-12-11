@@ -18,32 +18,32 @@
 {% block content_blog %}
 
     {% static_placeholder 'blog header' %}
-
-    <section
-        class="section-with-image-background-plugin"
-        style="background: url('{% thumbnail post.main_image 2560x350 crop=True subject_location=post.main_image.subject_location %}'); height: 350px;"
-    >
-    </section>
-
-    <section class="container">
-        <div class="row">
-
-            <article id="post-{{ post.slug }}" class="post-item post-detail col-lg-17 col-md-24">
+    {% thumbnail post.main_image 1200x380 crop upscale as thumb %}
+    <img src="{{thumb.url}}" alt="">
+    <section class="container" style="background:#F2F2F2">
+        <div class="row" >
+            <article style="margin-top: 1rem;" id="post-{{ post.slug }}" class="post-item post-detail col-lg-17 col-md-24">
                 <header>
 
                     <h1 class="post-title">{% render_model post "title" %}</h1>
                     {% if post.subtitle %}
-                        <h3>{% render_model post "subtitle" %}</h3>
+                        <h3 class="post-subtitle">
+                            {% if post.language_code == 'en'%}
+                                <span>Types：{% render_model post "subtitle" %}</span><span class="publish">Publish Time：{{ post.date_published|date:"DATE_FORMAT" }}</span>
+                            {% else %}
+                                <span>分类：{% render_model post "subtitle" %}</span><span class="publish">发布时间：{{ post.date_published|date:"DATE_FORMAT" }}/span>
+                            {% endif%}
+                            
+                        </h3>
                     {% endif %}
-                    {% block blog_meta %}
-                        {% include "djangocms_blog/includes/blog_meta.html" %}
-                    {% endblock %}
                 </header>
-
+                {% if post.meta_keywords %}
+                    <div class="keywords">{{post.meta_keywords }}</div>
+                {% endif %}
                 {% if post.app_config.use_placeholder %}
-                    <div class="blog-content">{% render_placeholder post.content %}</div>
+                    <div class="blog-content t111">{% render_model post "abstract" %}</div>
                 {% else %}
-                    <div class="blog-content"
+                    <div class="blog-content t222"
                     >{% render_model post "post_text" "post_text" "" "safe" %}</div>
                 {% endif %}
                 {% if view.liveblog_enabled %}
@@ -72,6 +72,15 @@
                     </a>
                 </div>
 
+                
+            </article>
+
+            <aside class="post-detail-aside aside-right col-7">
+                {% if post.language_code == 'en'%}
+                    <div class="rtitle"><span></span>More Recommends</div>
+                {% else %}
+                    <div class="rtitle">更多推荐</div>
+                {% endif%}
                 {% if post.related.exists %}
                     <section class="post-detail-list">
                         {% for related in post.related.all %}
@@ -79,10 +88,6 @@
                         {% endfor %}
                     </section>
                 {% endif %}
-            </article>
-
-            <aside class="post-detail-aside aside-right col-7">
-                {% static_placeholder 'Blog post sidebar' %}
             </aside>
 
         </div>

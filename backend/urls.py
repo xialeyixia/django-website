@@ -3,7 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include
-from django.urls import path, re_path
+from django.urls import path
 from djangocms_helpers.sentry_500_error_handler.views import collect_500_error_user_feedback_view
 from djangocms_helpers.sentry_500_error_handler.views import not_found_404_view
 
@@ -18,6 +18,7 @@ urlpatterns = [
         path('admin/', admin.site.urls),
         path('', include('aldryn_sso.urls')),
     ] + i18n_patterns(
+        path('product/', include('backend.products.urls')),
         path('', include('aldryn_sso.urls_i18n')),
         path('', include('cms.urls')),
     )

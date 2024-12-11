@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-29 12:13+0200\n"
+"POT-Creation-Date: 2024-12-01 13:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,8 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
+"Plural-Forms: nplurals=1; plural=0;\n"
 #: backend/blog/templates/djangocms_blog/plugins/latest_entries.html:9
 #: backend/blog/templates/djangocms_blog/post_list.html:48
 msgid "No article found."
@@ -25,7 +24,7 @@ msgstr ""
 
 #: backend/blog/templates/djangocms_blog/post_list.html:18
 msgid "Latest blog posts"
-msgstr ""
+msgstr "最新博客"
 
 #: backend/blog/templates/djangocms_blog/post_list.html:25
 msgid "Articles by"
@@ -47,19 +46,19 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: backend/blog/templates/djangocms_blog/post_list.html:59
+#: backend/blog/templates/djangocms_blog/post_list.html:60
 msgid "previous"
 msgstr ""
 
-#: backend/blog/templates/djangocms_blog/post_list.html:62
+#: backend/blog/templates/djangocms_blog/post_list.html:63
 msgid "Page"
 msgstr ""
 
-#: backend/blog/templates/djangocms_blog/post_list.html:62
+#: backend/blog/templates/djangocms_blog/post_list.html:63
 msgid "of"
 msgstr ""
 
-#: backend/blog/templates/djangocms_blog/post_list.html:65
+#: backend/blog/templates/djangocms_blog/post_list.html:66
 msgid "next"
 msgstr ""
 
@@ -75,11 +74,11 @@ msgstr ""
 msgid "Inline Alignment"
 msgstr ""
 
-#: backend/plugins/bs4_spacer/cms_plugins.py:12
+#: backend/plugins/bs4_spacer/cms_plugins.py:13
 msgid "Vertical Spacing"
 msgstr ""
 
-#: backend/plugins/bs4_spacer/cms_plugins.py:25
+#: backend/plugins/bs4_spacer/cms_plugins.py:23
 msgid "Advanced settings"
 msgstr ""
 

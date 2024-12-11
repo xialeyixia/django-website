@@ -1,0 +1,101 @@
+#navbarSupportedContent{
+    display: block !important;
+}
+.nav-item {
+    padding: 0.5rem 0.4rem;
+    box-sizing: content-box;
+  }
+  .nav-item:hover{
+    background: #00142d !important;
+  }
+  .nav-item:hover .nav-link{
+    color: #fff !important;
+  }
+  .nav-item.active, .nav-item.ancestor{
+    background: #00142d !important;
+  }
+  .nav-item.active .nav-link, .nav-item.ancestor .nav-link{
+    color: #fff !important;
+  }
+  .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link{
+    background: #00142d !important;
+    color: #fff !important;
+  }
+  .nav-link{
+    color: #555d65 !important;
+  }
+  .navbar-nav .dropdown-menu{
+    border-radius: 0;
+    margin-top:0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .navbar-nav .dropdown-menu .dropdown-item{
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    color: #555d65;
+  }
+  .navbar-nav .dropdown-menu .dropdown-item:hover{
+    background: #00142d !important;
+    color: #fff !important;
+  }
+  .dropdown-item.active, .dropdown-item:active{
+    background: #00142d !important;
+    color: #fff !important;
+  }
+  .services {
+    /* max-width:0 !important;
+    width:0 !important; */
+    max-width: 2rem !important;
+    position: fixed;
+    right: 0;
+    background: #000;
+    top: 45%;
+    border-top-left-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
+  }
+  .services div{
+    padding: .5rem 0;
+    
+  }
+  .services div img{
+    width: 1.6rem;
+    height:1.6rem;
+    padding-left:0.4rem;
+  }
+  .services div p {
+    writing-mode: vertical-rl;
+    color:#fff;
+    padding-right: 1rem;
+    display: flex;
+    width: 0;
+    margin-top: .5rem;
+    margin-bottom: 0.2rem;
+    align-items:center;
+  }
+  .wxcontact{
+    visibility: hidden;
+    position:fixed !important;
+    top:45%;
+    right:0;
+    width: 18rem;
+    padding: 1rem 0.5rem;
+  }
+  .wxcontact .row{
+    align-items:center;
+    margin-bottom:0.5rem;
+  }
+  /* .wxcontact .row :nth-child(1){
+    margin-bottom:1rem;
+  } */
+  .wxcontact .row :nth-child(1) img{
+    width:1.4rem;
+    margin-left: 0.2rem !important;
+  }
+  .wxcontact .row :nth-child(2){
+    flex: 6;
+  }
+  
+  .wxcontact .row :nth-child(2) p{
+    margin-bottom: 0 !important;
+  }
