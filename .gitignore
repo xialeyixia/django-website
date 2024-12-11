@@ -14,6 +14,8 @@ backend/.local-env
 backend/addons-dev
 .venv
 
+mediaw/
+
 # dev files
 .idea/
 .DS_Store
