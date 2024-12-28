@@ -1,0 +1,13 @@
+{% load i18n easy_thumbnails_tags cms_tags %}
+<a href="{{instance.product.id}}">
+  <div class="news-plugin-views container">
+    <div class="col col-lg-3 col-md-3 col-12 col-xl-3 col-xxl-3 col-sm-12">
+  
+    </div>
+    <div class="col col-lg-9 col-md-9 col-12 col-xl-9 col-xxl-9 col-sm-12"></div>
+    <a href="{{instance.product.id}}">
+      <img style="height:100%;width:100%" src="{{ instance.image.url }}" alt="" />
+      <span style="position:absolute;bottom:0.4rem;left:1rem;color:#fff;">{{instance.product.name}}</span>
+    </a>
+  </div>
+</a>

@@ -45,7 +45,7 @@ const config = {
                     {
                         loader: MiniCssExtractPlugin.loader,
                     },
-                    {loader: 'css-loader', options: {sourceMap: true}},
+                    { loader: 'css-loader', options: { sourceMap: true } },
                     {
                         loader: 'postcss-loader',
                         options: {
@@ -54,37 +54,40 @@ const config = {
                             },
                         },
                     },
-                    {loader: 'sass-loader', options: {sourceMap: true}},
+                    { loader: 'sass-loader', options: { sourceMap: true } },
                 ],
             },
             {
-                // images
-                test: /\.(jpe?g|png|gif)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            query: {
-                                hash: 'sha512',
-                                digest: 'hex',
-                                name: '[name].[ext]',
-                            },
-                        },
-                    },
-                    {
-                        loader: 'image-webpack-loader',
-                        options: {
-                            query: {
-                                bypassOnDebug: 'true',
-                                mozjpeg: {progressive: true},
-                                gifsicle: {interlaced: true},
-                                optipng: {optimizationLevel: 7},
-                                webp: {quality: 80},
-                            },
-                        },
-                    },
-                ],
+                test: /\.(png|jpe?g|gif|webp)$/,
+                type: "asset",
             },
+            // {
+            //     // images
+            //     test: /\.(jpe?g|png|gif)$/i,
+            //     use: [
+            //         {
+            //             loader: 'file-loader',
+            //             options: {
+            //                 // 输出图片的目录
+            //                 outputPath: 'images/',
+            //                 // 在输出目录中的图片名称
+            //                 name: '[name].[ext]',
+            //             },
+            //         },
+            //         // {
+            //         //     loader: 'image-webpack-loader',
+            //         //     options: {
+            //         //         query: {
+            //         //             bypassOnDebug: 'true',
+            //         //             mozjpeg: { progressive: true },
+            //         //             // gifsicle: {interlaced: true},
+            //         //             optipng: { optimizationLevel: 7 },
+            //         //             // webp: { quality: 80 },
+            //         //         },
+            //         //     },
+            //         // },
+            //     ],
+            // },
             {
                 test: /\.(svg)(\?[\s\S]+)?$/,
                 // svg fonts cannot be processed the way we do with svg images above
@@ -102,7 +105,7 @@ const config = {
             },
             {
                 test: /\.vue$/,
-                use: [{loader: 'vue-loader'}],
+                use: [{ loader: 'vue-loader' }],
             },
         ],
     },
@@ -130,7 +133,7 @@ const config = {
     },
     plugins: [
         new VueLoaderPlugin(),
-        new MiniCssExtractPlugin({filename: '[name].css'}),
+        new MiniCssExtractPlugin({ filename: '[name].css' }),
     ],
 };
 

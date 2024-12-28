@@ -1,0 +1,11 @@
+<h1>Search Results for "{{ query }}"</h1>
+<ul>
+    {% for result in results %}
+        <li>{{ result.field1 }} - {{ result.field2 }} <!-- 替换为你的字段名 -->
+            <!-- 可以添加更多字段或链接到详情页面 -->
+        </li>
+    {% endfor %}
+</ul>
+{% if not results %}
+    <p>No results found.</p>
+{% endif %}

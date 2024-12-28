@@ -7,8 +7,8 @@ import dj_email_url
 import django_cache_url
 import environ
 from django.urls import reverse_lazy
-from django_storage_url import dsn_configured_storage_class
-from link_all.dataclasses import LinkAllModel
+# from django_storage_url import dsn_configured_storage_class
+# from link_all.dataclasses import LinkAllModel
 from enumfields import Enum as EnumFields
  
 
@@ -72,9 +72,10 @@ installed_apps_overrides = [
     # for USERNAME_FIELD = 'email', before `cms` since it has a User model
     'backend.auth',
 
-    'backend.blog',
+    # 'backend.blog',
 
     'backend.products',
+    'backend.news',
     
 
     'djangocms_modules',
@@ -127,31 +128,50 @@ INSTALLED_APPS.extend([
     'djangocms_helpers.sentry_500_error_handler',
 
     'robots',
-    'djangocms_link',
+    # 'djangocms_link',
+
+    'djangocms_frontend',
+    'djangocms_frontend.contrib.accordion', # 可选
+    'djangocms_frontend.contrib.alert', # 可选
+    'djangocms_frontend.contrib.badge', # 可选
+    'djangocms_frontend.contrib.card', # 可选
+    'djangocms_frontend.contrib.carousel', # 可选
+    'djangocms_frontend.contrib.collapse', # 可选
+    'djangocms_frontend.contrib.content', # 可选
+    'djangocms_frontend.contrib.grid',# 可选
+    'djangocms_frontend.contrib.icon', # 可选
+    'djangocms_frontend.contrib.image', # 可选
+    'djangocms_frontend.contrib.jumbotron', # 可选
+    'djangocms_frontend.contrib.link', # 可选
+    'djangocms_frontend.contrib.listgroup', # 可选
+    'djangocms_frontend.contrib.media', # 可选
+    'djangocms_frontend.contrib.tabs', # 可选
+    'djangocms_frontend.contrib.utilities', # 可选
+
     # django cms
 
-    'djangocms_bootstrap4',
-    'djangocms_bootstrap4.contrib.bootstrap4_link',
-    'djangocms_bootstrap4.contrib.bootstrap4_alerts',
-    'djangocms_bootstrap4.contrib.bootstrap4_badge',
-    'djangocms_bootstrap4.contrib.bootstrap4_card',
-    'djangocms_bootstrap4.contrib.bootstrap4_carousel',
-    'djangocms_bootstrap4.contrib.bootstrap4_collapse',
-    'djangocms_bootstrap4.contrib.bootstrap4_content',
-    'djangocms_bootstrap4.contrib.bootstrap4_grid',
-    'djangocms_bootstrap4.contrib.bootstrap4_jumbotron',
-    'djangocms_bootstrap4.contrib.bootstrap4_listgroup',
-    'djangocms_bootstrap4.contrib.bootstrap4_media',
-    'djangocms_bootstrap4.contrib.bootstrap4_tabs',
-    'djangocms_bootstrap4.contrib.bootstrap4_utilities',
+    # 'djangocms_bootstrap4',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_link',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_alerts',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_badge',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_card',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_carousel',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_collapse',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_content',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_grid',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_jumbotron',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_listgroup',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_media',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_tabs',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_utilities',
+    # 'djangocms_bootstrap4.contrib.bootstrap4_picture',
     'djangocms_picture',
-    'djangocms_bootstrap4.contrib.bootstrap4_picture',
     'aldryn_apphooks_config',
-    'djangocms_blog',
+    # 'djangocms_blog',
     'taggit',
     'taggit_autosuggest',
     'sortedm2m',
-    'djangocms_icon',
+    # 'djangocms_icon',
     'djangocms_text_ckeditor',
     'djangocms_googlemap',
     'djangocms_video',
@@ -349,45 +369,46 @@ HIJACK_ALLOW_GET_REQUESTS = True
 
 ADMIN_REORDER = [
     {
-        'label': 'Users',
+        'label': '用户',
         'app': 'auth',
         'models': [
             'backend_auth.User',
-            'aldryn_sso.AldrynCloudUser',
-            'auth.Group',
+            # 'aldryn_sso.AldrynCloudUser',
+            # 'auth.Group',
             
         ],
     },
     {
-        'label': 'CMS',
+        'label': '内容管理',
         'app': 'cms',
         'models': [
             'cms.Page',
-            {'model': 'filer.Folder', 'label': 'Media'},
+            {'model': 'filer.Folder', 'label': '图片资源'},
             # 'djangocms_redirect.Redirect',
-            {'model': 'aldryn_forms.FormSubmission', 'label': 'Dynamic forms submissions'},
-            'backend_products.Product'
+            # {'model': 'aldryn_forms.FormSubmission', 'label': 'Dynamic forms submissions'},
+            'backend_products.Product',
+            'backend_news.News'
         ],
     },
-    {
-        'label': 'News',
-        'app': 'djangocms_blog'
-    },
-    {
-        'label': 'System Administration',
-        'app': 'cms',
-        'models': [
+    # {
+    #     'label': 'News',
+    #     'app': 'djangocms_blog'
+    # },
+    # {
+        # 'label': 'System Administration',
+        # 'app': 'cms',
+        # 'models': [
             # {'model': 'sites.Site', 'label': 'Websites'},
             # {'model': 'djangocms_modules.Category', 'label': 'Plugin modules categories'},
-            {'model': 'djangocms_snippet.Snippet', 'label': 'HTML snippets'},
+            # {'model': 'djangocms_snippet.Snippet', 'label': 'HTML snippets'},
             # 'admin.LogEntry',
 
             # removed because it doesn't work on cms 3.7.3
             # 'cms.GlobalPagePermission',
             # 'cms.PageUserGroup',
             # 'cms.PageUser',
-        ],
-    },
+        # ],
+    # },
     # {
     #     'label': 'SEO',
     #     'app': 'cms',
@@ -489,18 +510,18 @@ CMS_PERMISSION = True
 LANGUAGE_CODE = "zh-hans"
 
 LANGUAGES = [
-    ('en', "English"),
-    ('zh-hans', "简体中文"),
+    ('en', "en"),
+    ('zh-hans', "中文"),
 ]
 CMS_LANGUAGES = {
     SITE_ID: [
         {
             'code': 'en',
-            'name': 'English',
+            'name': 'en',
         },
         {
             'code': 'zh-hans',
-            'name': '简体中文',
+            'name': '中文',
         },
     ],
     'default': {
@@ -549,14 +570,14 @@ CMS_PLACEHOLDER_CONF = {
 }
 
 
-DJANGOCMS_BOOTSTRAP4_GRID_SIZE = 24
-DJANGOCMS_BOOTSTRAP4_GRID_COLUMN_CHOICES = [
-    ('col', 'Column'),
-    # for full width columns that have no left/right padding
-    ('col p-0', 'Full-width Column'),
-    ('w-100', 'Break'),
-    ('', 'Empty'),
-]
+# DJANGOCMS_BOOTSTRAP4_GRID_SIZE = 24
+# DJANGOCMS_BOOTSTRAP4_GRID_COLUMN_CHOICES = [
+#     ('col', 'Column'),
+#     # for full width columns that have no left/right padding
+#     ('col p-0', 'Full-width Column'),
+#     ('w-100', 'Break'),
+#     ('', 'Empty'),
+# ]
 
 
 class GridContainerBackground(EnumFields):
@@ -590,7 +611,7 @@ class GridContainerWidthInternal(EnumFields):
     NONE = 'none'
 
 
-DJANGOCMS_BOOTSTRAP4_GRID_CONTAINER_BACKGROUND = GridContainerBackground
+# DJANGOCMS_BOOTSTRAP4_GRID_CONTAINER_BACKGROUND = GridContainerBackground
 
 DJANGOCMS_GOOGLEMAP_API_KEY = env.str('DJANGOCMS_GOOGLEMAP_API_KEY', '123')
 
@@ -654,16 +675,16 @@ ALDRYN_SEARCH_EXCLUDED_PLUGINS = [
     'TocPlugin',
     'NavBarPlugin',
     'VerticalSpacerPlugin',
-    'Bootstrap4HidePlugin',
+    # 'Bootstrap4HidePlugin',
     'MailchimpPlugin',
 ]
 ALGOLIA_SEARCH_INDEX_TEXT_LIMIT = 95_000
 
 
-LINK_ALL_MODELS_ADDITIONAL = [
-    LinkAllModel(app_label='djangocms_blog', model_name='Post'),
-    LinkAllModel(app_label='djangocms_blog', model_name='BlogCategory'),
-]
+# LINK_ALL_MODELS_ADDITIONAL = [
+#     LinkAllModel(app_label='djangocms_blog', model_name='Post'),
+#     LinkAllModel(app_label='djangocms_blog', model_name='BlogCategory'),
+# ]
 LINK_ALL_ENABLE_BUTTON_PLUGIN = True
 
 

@@ -17,8 +17,9 @@ urlpatterns = [
         path('filer/', include('filer.urls')),
         path('admin/', admin.site.urls),
         path('', include('aldryn_sso.urls')),
-    ] + i18n_patterns(
         path('product/', include('backend.products.urls')),
+        path('news/', include('backend.news.urls')),
+    ] + i18n_patterns(
         path('', include('aldryn_sso.urls_i18n')),
         path('', include('cms.urls')),
     )
