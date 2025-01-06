@@ -206,6 +206,7 @@ INSTALLED_APPS.extend([
     'backend.plugins.bs4_spacer',
     'backend.plugins.horizontal_line',
     'backend.plugins.product_plugin',
+    'backend.plugins.news_plugin',
 
     ## BEWARE: any application added here will not show their models in django admin UNLESS you configure them below in the ADMIN_REORDER setting.
 ])
@@ -347,7 +348,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 GTM_CONTAINER_ID = env.str('GTM_CONTAINER_ID', 'GTM-1234')
 
-WEBPACK_DEV_URL = env.str('WEBPACK_DEV_URL', default='http://10.0.0.150:8090')
+WEBPACK_DEV_URL = env.str('WEBPACK_DEV_URL', default='http://127.0.0.1:8090')
 
 
 SENTRY_DSN = env.str('SENTRY_DSN', '')

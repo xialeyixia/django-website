@@ -8,11 +8,17 @@ from . import models
 
 
 class NewsPlugin(CMSPluginBase):
-    model = models.ProductModel
+    model = models.NewsModel
     module = MODULE_NAME
-    name = _("product")
-    render_template = 'product_plugin/plugins/product.html'
-    allow_children = True
+    name = _("news")
+    render_template = 'news_plugin/plugins/news.html'
+    # allow_children = True
+    def render(self, context, instance, placeholder):
+        context.update({
+            'instance': instance,
+        })
+        print(context, instance, 8888)
+        return context
 
 
-plugin_pool.register_plugin(ProductPlugin)
+plugin_pool.register_plugin(NewsPlugin)

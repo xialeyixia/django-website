@@ -4,7 +4,7 @@
 {% load cms_tags menu_tags sekizai_tags static %}
 
 {% block navbar %}
-    <nav style="padding: 0 !important;" class="navbar {% block navbar_options %}navbar-expand-lg navbar-light bg-white{% endblock %}">
+    <nav style="padding: 0 !important;" class="mynav navbar {% block navbar_options %}navbar-expand-lg navbar-light bg-white{% endblock %}">
         <div class="container">
             <a class="navbar-brand" href="/"><img style="height: 50px; padding: 10px;margin-right:20px;box-sizing: content-box;" src="/static/global/img/logo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,6 @@
 {% block content %}
     <main>
         <div>{{news.name}}</div>
-        {% static_placeholder 'product_content' %}
     </main>
 
     <footer>
