@@ -1,18 +1,17 @@
-FROM node:18.17.1 AS frontend-build
+FROM node:18 AS frontend-build
 COPY frontend/package.json .
 COPY frontend/yarn.lock .
 RUN yarn install --pure-lockfile
 COPY frontend/ .
 RUN yarn run build
 
-
 FROM python:3.10.6 as django-build
-
 RUN apt-get update && apt-get install -y gettext
 
+# RUN apt-get update && apt-get install -y gettext
+# RUN yum install -y gettext
 COPY backend/requirements.txt /app/backend/requirements.txt
 RUN pip install --no-deps --no-cache-dir -r /app/backend/requirements.txt
-
 WORKDIR /app/
 COPY . /app/
 # copies over the compiled sources from node image above

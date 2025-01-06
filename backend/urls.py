@@ -17,15 +17,13 @@ urlpatterns = [
         path('filer/', include('filer.urls')),
         path('admin/', admin.site.urls),
         path('', include('aldryn_sso.urls')),
-        path('product/', include('backend.products.urls')),
-        path('news/', include('backend.news.urls')),
     ] + i18n_patterns(
         path('', include('aldryn_sso.urls_i18n')),
         path('', include('cms.urls')),
     )
 
-if settings.DEBUG:
-    urlpatterns.extend(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
+#if settings.DEBUG:
+urlpatterns.extend(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
 
 if not settings.DEBUG:
     handler500 = collect_500_error_user_feedback_view

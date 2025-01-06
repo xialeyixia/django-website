@@ -61,7 +61,8 @@ DEBUG_PROPAGATE_EXCEPTIONS = env.bool('DEBUG_PROPAGATE_EXCEPTIONS', default=Fals
 # this is set by Divio environment automatically
 SECRET_KEY = env.str('SECRET_KEY', default="this-is-not-very-random")
 
-ALLOWED_HOSTS = [env.str('DOMAIN', default=""),]
+# ALLOWED_HOSTS = [env.str('DOMAIN', default=""),]
+ALLOWED_HOSTS=["10.0.0.150"]
 if DEBUG:
     ALLOWED_HOSTS = ["*",]
 
@@ -346,7 +347,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 GTM_CONTAINER_ID = env.str('GTM_CONTAINER_ID', 'GTM-1234')
 
-WEBPACK_DEV_URL = env.str('WEBPACK_DEV_URL', default='http://127.0.0.1:8090')
+WEBPACK_DEV_URL = env.str('WEBPACK_DEV_URL', default='http://10.0.0.150:8090')
 
 
 SENTRY_DSN = env.str('SENTRY_DSN', '')

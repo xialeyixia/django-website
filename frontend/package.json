@@ -16,8 +16,6 @@
         "bootstrap": "^5.3.0",
         "css-loader": "^6.8.1",
         "file-loader": "^6.2.0",
-        "image-webpack-loader": "^8.1.0",
-        "imagemin-gifsicle": "^7.0.0",
         "jquery": "^3.7.0",
         "mini-css-extract-plugin": "^2.7.6",
         "node-sass": "^9.0.0",
@@ -44,6 +42,6 @@
         "serve": "webpack serve",
         "webpack-dev-server": "yarn start",
         "webpack-dev-server-in-docker": "NODE_ENV=docker /node_modules/.bin/webpack-dev-server --config webpack.config.js",
-        "build": "NODE_ENV=production /node_modules/.bin/webpack --config webpack.config.js"
+        "build": "webpack --config webpack.config.js"
     }
 }

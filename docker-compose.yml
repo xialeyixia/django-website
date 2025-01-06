@@ -1,4 +1,4 @@
-j   version: '2'
+version: '2'
 
 # Live Mode
 # firstly remove /static_collected from .dockerignore
@@ -15,7 +15,10 @@ services:
             - './data:/data:rw'
         command: python manage.py runserver 0.0.0.0:80
         env_file: backend/.local-env
-
+        # environment:
+        #   - http_proxy=http://10.0.0.1:1081
+        #   - https_proxy=http://10.0.0.1:1081
+        #   - no_proxy=127.0.0.1
     frontend:
         build:
             context: '.'

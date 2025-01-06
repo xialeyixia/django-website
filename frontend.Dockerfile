@@ -1,5 +1,5 @@
-FROM node:18.17.1
-
+FROM node:18
+RUN yarn config set registry https://registry.npmmirror.com/
 COPY frontend/package.json /package.json
 COPY frontend/yarn.lock /yarn.lock
 
