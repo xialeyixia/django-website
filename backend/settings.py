@@ -242,6 +242,7 @@ MIDDLEWARE = [
 # environment variable is available, e.g. during Docker build
 DATABASE_URL = env.str('DATABASE_URL', default=f'sqlite:///{BASE_DIR}/db.sqlite')
 DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
+print(DATABASES, 1234)
 
 
 AUTH_USER_MODEL = 'backend_auth.User'
@@ -348,7 +349,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 GTM_CONTAINER_ID = env.str('GTM_CONTAINER_ID', 'GTM-1234')
 
-WEBPACK_DEV_URL = env.str('WEBPACK_DEV_URL', default='http://127.0.0.1:8090')
+WEBPACK_DEV_URL = env.str('WEBPACK_DEV_URL', default='http://10.0.0.150:8090')
 
 
 SENTRY_DSN = env.str('SENTRY_DSN', '')
