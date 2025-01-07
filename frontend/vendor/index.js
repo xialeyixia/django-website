@@ -1,11 +1,10 @@
 import * as Sentry from '@sentry/browser';
-
-
 Sentry.init({
     dsn: '',
     environment: DJANGO_ENV,
 });
-
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
 
 window.$ = window.jQuery = require('jquery');
 
@@ -35,19 +34,45 @@ require('@fortawesome/fontawesome-free/scss/regular.scss');
 // })
 window.onload = () => {
     let dom = document.getElementsByClassName('custom-link');
-   if (dom) {
-    for (var i = 0; i < dom.length; i++) {
-        // 为每个元素添加事件监听器
-        dom[i].addEventListener('click', function(event) {
-            if (/products\/\d/.test(location.href)) {
-                event.preventDefault();
-            } else {
-                location.href = location.origin + '/' + $(this).attr('languagecode') + '/products/' + $(this).attr('customdata')
-                console.log(2222)
-            }
+    if (dom) {
+        for (var i = 0; i < dom.length; i++) {
+            // 为每个元素添加事件监听器
+            dom[i].addEventListener('click', function (event) {
+                if (/products\/\d/.test(location.href)) {
+                    event.preventDefault();
+                } else {
+                    location.href = location.origin + '/' + $(this).attr('languagecode') + '/products/' + $(this).attr('customdata')
+                }
+            });
+        }
+
+    }
+    if (document.getElementsByClassName('mySwiper')) {
+        var swiper = new Swiper(".mySwiper", {
+            direction: 'vertical', // 垂直切换选项
+            loop: true, // 循环模式选项
+            slidesPerView: 1,
+            spaceBetween: 10,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                },
+                1024: {
+                    slidesPerView: 5,
+                    spaceBetween: 50,
+                },
+            },
         });
     }
-}
     // let dom = document.getElementById('services')
     // let dom1 = document.getElementById('wxcontact')
     // if (dom && dom1) {

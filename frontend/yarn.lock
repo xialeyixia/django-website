@@ -7672,6 +7672,11 @@ svg-url-loader@^8.0.0:
   dependencies:
     file-loader "~6.2.0"
 
+swiper@^11.2.0:
+  version "11.2.0"
+  resolved "https://registry.npmmirror.com/swiper/-/swiper-11.2.0.tgz#fbef83ab8fe165ceff82c69177a57033809cb1c2"
+  integrity sha512-rjjAKgDEs+grR2eQshVDCcE4KNPC7CI294nfcbV9gE8WCsLdvOYXDeZKUYevqAZZp8j5hE7kpT3dAGVKFBWlxQ==
+
 symbol-observable@^1.0.4:
   version "1.2.0"
   resolved "https://registry.npmmirror.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"

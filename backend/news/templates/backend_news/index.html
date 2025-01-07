@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 
-{% load cms_tags menu_tags sekizai_tags static %}
+{% load i18n cms_tags menu_tags sekizai_tags static %}
+{% get_current_language as lang_code %}
 
 {% block navbar %}
     <nav style="padding: 0 !important;" class="mynav navbar {% block navbar_options %}navbar-expand-lg navbar-light bg-white{% endblock %}">
@@ -31,10 +32,42 @@
 {% endblock %}
 
 {% block content %}
-    <main>
-	<img src="{{news.image.url}}">
-	{{news.name}}
-        {% placeholder 'content' %}
+    <main style="background:#f2f2f2;">
+        <div class="my_news_detail container" style="padding:0 10rem;">
+            <img src="{{news.image.url}}" style="display:block">
+            <div class="row news_detail" >
+                <div class="detail_right col col-lg-9 col-md-9 col-9 col-xl-9 col-xxl-9 col-sm-12">
+                    <div style="background:#fff;padding:0.75rem;">
+                        <p class="title">{{news.name}}</p>
+                        <div class="subtitle">
+                            <span>{% if lang_code == 'en'%} Category: {% else %} 分类：{% endif %}{{news.tag}}</span>
+                            <span style="margin-left:8px">{% if lang_code == 'en'%} Create Time: {% else %} 发布时间：{% endif %}{{news.created_at}}</span>
+                        </div>
+                        <div class="intro">{{news.description}}</div>
+                        <p class="content">{{news.content}}</p>
+                    </div>
+                </div>
+                <div class="detail_left col col-lg-3 col-md-3 col-3 col-xl-3 col-xxl-3 col-sm-12" style="background:#fff;">
+                    <p class="title">
+                        {% if lang_code == 'en'%} More Recommend {% else %} 更多推荐 {% endif %}
+                    <p>
+                        <div class="swiper mySwiper" style="width:100%;height:300px">
+                            <div class="swiper-wrapper">
+                              <div class="swiper-slide">Slide 1</div>
+                              <div class="swiper-slide">Slide 2</div>
+                              <div class="swiper-slide">Slide 3</div>
+                              <div class="swiper-slide">Slide 4</div>
+                              <div class="swiper-slide">Slide 5</div>
+                              <div class="swiper-slide">Slide 6</div>
+                              <div class="swiper-slide">Slide 7</div>
+                              <div class="swiper-slide">Slide 8</div>
+                              <div class="swiper-slide">Slide 9</div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
     </main>
 
 {% endblock %}
+
