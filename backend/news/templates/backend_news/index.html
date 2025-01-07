@@ -6,13 +6,25 @@
 {% block navbar %}
     <nav style="padding: 0 !important;" class="mynav navbar {% block navbar_options %}navbar-expand-lg navbar-light bg-white{% endblock %}">
         <div class="container">
-            <a class="navbar-brand" href="/"><img style="height: 50px; padding: 10px;margin-right:20px;box-sizing: content-box;" src="/static/global/img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/" style="margin-right: 2rem;">
+                <img style="height: 50px; padding: 10px;box-sizing: content-box;" src="/static/global/img/logo.png" alt="">
+                <span>Tiny RF Equip</span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">{% block menubar %}{% show_menu 0 100 100 100 'menu/menu.html' %}{% endblock %}</ul>
                 {% block searchbar %}{% endblock %}
+                <ul class="language-box">{% language_chooser %}</ul>
+                {% comment %} <form action="{% url 'search' %}" method="get">
+                    <input type="text" name="q" placeholder="Search..." required>
+                    <button type="submit">Search</button>
+                </form> {% endcomment %}
+                {% comment %} <django-formset …>
+                    <input class="formset-text-input" form="id_registerpersonform" type="text" placeholder="搜索">
+                    <button type="submit" class="search-button">Search</button>
+                </django-formset> {% endcomment %}
             </div>
         </div>
     </nav>
@@ -20,10 +32,9 @@
 
 {% block content %}
     <main>
-        <div>{{news.name}}</div>
+	<img src="{{news.image.url}}">
+	{{news.name}}
+        {% placeholder 'content' %}
     </main>
 
-    <footer>
-        {% static_placeholder 'footer' %}
-    </footer>
 {% endblock %}

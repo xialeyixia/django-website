@@ -143,7 +143,7 @@ if (isDevelopmentMode) {
     // those are twice as slow, but work with scss
     // config.devtool = 'source-map';
     config.output.filename = '[name].bundle.js';
-    config.output.publicPath = 'http://localhost:8090/';
+    config.output.publicPath = 'http://10.0.0.150:8090/';
 }
 
 const isDockerMode = process.env.NODE_ENV === 'docker';

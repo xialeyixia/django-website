@@ -22,7 +22,7 @@
         {% include 'djangocms_page_meta/meta.html' with meta=page_meta %}
     {% endblock meta %}
 
-    <link rel="shortcut icon" href="{% static 'global/img/favicon.ico' %}" type="image/x-icon"/>
+    <link rel="shortcut icon" href="{% static 'global/img/logo.png' %}" type="image/x-icon"/>
     {% render_block 'css' %}
 
     {% for language in languages %}
@@ -61,8 +61,8 @@
 
     {% else %}
 
-        <script defer src="{% static 'dist/vendor.js' %}" data-is-reload-on-page-edit="true"></script>
-        <script defer src="{% static 'dist/global.js' %}" data-is-reload-on-page-edit="true"></script>
+        <script defer src="{% static 'dist/vendor.bundle.js' %}" data-is-reload-on-page-edit="true"></script>
+        <script defer src="{% static 'dist/global.bundle.js' %}" data-is-reload-on-page-edit="true"></script>
 
         <link rel="stylesheet" href="{% static 'dist/vendor.css' %}">
         <link rel="stylesheet" href="{% static 'dist/global.css' %}">
@@ -82,18 +82,15 @@
 
 {% cms_toolbar %}
 {% block navbar %}{% endblock %}
-{% block content_before %}{% endblock %}
+
 <div>
+
 
     {% block content %}{% endblock %}
 
 </div>
 
-{% block content_after %}{% endblock %}
 
-<footer>
-    {% static_placeholder 'footer' %}
-</footer>
 
 {% render_block 'js' %}
 
