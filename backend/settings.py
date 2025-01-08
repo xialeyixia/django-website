@@ -468,6 +468,7 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES,
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated', )
 }
+CSRF_TRUSTED_ORIGINS = ['http://10.0.0.150:8003']
 
 if not DEBUG:
     CSRF_COOKIE_SECURE = True

@@ -382,6 +382,39 @@ body {
           left: 0;
         }
       }
+      .mySwiper{
+	.swiper-slide{
+            border-bottom:1px solid hsla(0, 0%, 60%, 0.15);
+	}
+        .tit{
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          margin-bottom: 8px;
+          a{
+            color: #666;
+            font-size: 14px;
+            display: block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+	    text-decoration:none;
+            flex: 1;
+          }
+          span{
+            color: #999;
+            font-size: 14px;
+          }
+        }
+        .subtit{
+          color: #878787;
+          font-size: 12px;
+          display: block;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
     }
   }
 }
