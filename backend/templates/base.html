@@ -47,15 +47,15 @@
 
     {% if settings.DJANGO_ENV.value == 'local' %}
 
-        <script defer src="{{ settings.WEBPACK_DEV_URL }}/vendor.bundle.js"
+        <script defer src="{{ settings.WEBPACK_DEV_URL }}/static/dist/vendor.bundle.js"
             data-is-reload-on-page-edit="true"
         ></script>
-        <script defer src="{{ settings.WEBPACK_DEV_URL }}/global.bundle.js"
+        <script defer src="{{ settings.WEBPACK_DEV_URL }}/static/dist/global.bundle.js"
             data-is-reload-on-page-edit="true"
         ></script>
 
-        <link rel="stylesheet" href="{{ settings.WEBPACK_DEV_URL }}/vendor.css">
-        <link rel="stylesheet" href="{{ settings.WEBPACK_DEV_URL }}/global.css">
+        <link rel="stylesheet" href="{{ settings.WEBPACK_DEV_URL }}/static/dist/vendor.css">
+        <link rel="stylesheet" href="{{ settings.WEBPACK_DEV_URL }}/static/dist/global.css">
 
         {% block head_local_frontend_files %}{% endblock %}
 
