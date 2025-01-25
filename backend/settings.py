@@ -62,7 +62,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = env.bool('DEBUG_PROPAGATE_EXCEPTIONS', default=Fals
 SECRET_KEY = env.str('SECRET_KEY', default="this-is-not-very-random")
 
 # ALLOWED_HOSTS = [env.str('DOMAIN', default=""),]
-ALLOWED_HOSTS=["10.0.0.150"]
+ALLOWED_HOSTS=["*"]
 if DEBUG:
     ALLOWED_HOSTS = ["*",]
 
@@ -349,7 +349,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 GTM_CONTAINER_ID = env.str('GTM_CONTAINER_ID', 'GTM-1234')
 
-WEBPACK_DEV_URL = env.str('WEBPACK_DEV_URL', default='http://10.0.0.150:8090')
+WEBPACK_DEV_URL = env.str('WEBPACK_DEV_URL', default='http://223.254.131.55:8090')
 
 
 SENTRY_DSN = env.str('SENTRY_DSN', '')
@@ -514,14 +514,14 @@ CMS_PERMISSION = True
 LANGUAGE_CODE = "zh-hans"
 
 LANGUAGES = [
-    ('en', "en"),
+    ('en', "English"),
     ('zh-hans', "中文"),
 ]
 CMS_LANGUAGES = {
     SITE_ID: [
         {
             'code': 'en',
-            'name': 'en',
+            'name': 'English',
         },
         {
             'code': 'zh-hans',

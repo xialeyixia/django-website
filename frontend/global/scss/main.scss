@@ -9,8 +9,16 @@ body {
   display: flex;
   align-items: center;
   list-style: none;
-
+  li:first-child{
+      &::after{
+        postion:absolute;
+        content: '·';
+        margin-right: 8px;
+        margin-left: 8px;
+      }
+    }
   li {
+    position:relative;
     a {
       color: #000;
       text-decoration: none;
@@ -68,6 +76,11 @@ body {
       .card-body {
         padding: 0 0.5rem;
       }
+    }
+  }
+  .home-news{
+    img{
+      height: 23.8rem;
     }
   }
 }
