@@ -40,7 +40,18 @@
                     <div style="background:#fff;padding:0.75rem;">
                         <p class="title">{{news.name}}</p>
                         <div class="subtitle">
-                            <span>{% if lang_code == 'en'%} Category: {% else %} 分类：{% endif %}{{news.tag}}</span>
+                            <span>
+                                {% if lang_code == 'en'%}
+                                  Category: 
+                                  {% if news.tag == '公司新闻' %}
+                                    Company news
+                                  {% else %}
+                                    Industy Trends
+                                  {% endif %}
+                                {% else %}
+                                  分类：{{news.tag}}
+                                {% endif %}
+                            </span>
                             <span style="margin-left:8px">{% if lang_code == 'en'%} Create Time: {% else %} 发布时间：{% endif %}{{news.created_at}}</span>
                         </div>
                         <div class="intro">{{news.description}}</div>
@@ -55,7 +66,7 @@
                             <div class="swiper-wrapper">
                                {% for related in related_news %}
                                    <div class="swiper-slide" data-swiper-slide-index="2" style="height: 63.6px; margin-bottom: 8px;">
-                                       <div class="tit"><a href="">{{related.name}}</a><span>{{related.created_at}}</span></div>
+                                       <div class="tit"><a href="/{{lang_code}}/news/my/{{related.id}}">{{related.name}}</a><span>{{related.created_at}}</span></div>
                                        <div class="subtit">{{related.description}}</div>
                                    </div>
                                {% endfor %}

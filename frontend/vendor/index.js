@@ -33,20 +33,6 @@ require('@fortawesome/fontawesome-free/scss/regular.scss');
 //     dropdownOpen();
 // })
 window.onload = () => {
-    let dom = document.getElementsByClassName('custom-link');
-    if (dom) {
-        for (var i = 0; i < dom.length; i++) {
-            // 为每个元素添加事件监听器
-            dom[i].addEventListener('click', function (event) {
-                if (/products\/\d/.test(location.href)) {
-                    event.preventDefault();
-                } else {
-                    location.href = location.origin + '/' + $(this).attr('languagecode') + '/products/' + $(this).attr('customdata')
-                }
-            });
-        }
-
-    }
     if (document.getElementsByClassName('mySwiper')) {
         var swiper = new Swiper(".mySwiper", {
             direction: 'vertical', // 垂直切换选项
