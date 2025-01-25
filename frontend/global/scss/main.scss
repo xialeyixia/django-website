@@ -19,8 +19,14 @@ body {
     }
   li {
     position:relative;
+    &.active{
+      a{
+        color:#00142d;
+        font-weight:500;
+      }
+    }
     a {
-      color: #000;
+      color: #4a4a4a;
       text-decoration: none;
     }
   }
@@ -109,6 +115,13 @@ body {
 
   .second-card {
     border: 0;
+  }
+  .normal-news{
+    color: #4a4a4a;
+    font-size:14px;
+  }
+  .active-news{
+    color:#00142d;
   }
 }
 
