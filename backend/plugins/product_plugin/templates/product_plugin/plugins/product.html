@@ -1,6 +1,7 @@
 {% load i18n easy_thumbnails_tags cms_tags %}
 {% get_current_language as lang_code %}
-<a href="/{{lang_code}}/products/{{instance.product.id}}" languagecode="{{lang_code}}" customdata="{{instance.product.id}}" class="custom-link" style="height:100%;width:100%;display:inline-block;position:relative;padding-right:0.8rem;">
+<div style="height:96%"><a href="/{{lang_code}}/products/{{instance.product.id}}" languagecode="{{lang_code}}" customdata="{{instance.product.id}}" class="custom-link" style="height:100%;width:100%;display:inline-block;padding-bottom:6px;padding-right:0.8rem;">
   <img style="height:100%;width:100%" src="{{ instance.image.url }}" alt="" />
-  <span style="position:absolute;bottom:0.4rem;left:1rem;color:#fff;">{{instance.product.name}}</span>
 </a>
+<span style="font-weight:500;color:#000;">{{instance.product.name}}</span>
+</div>

@@ -349,7 +349,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 GTM_CONTAINER_ID = env.str('GTM_CONTAINER_ID', 'GTM-1234')
 
-WEBPACK_DEV_URL = env.str('WEBPACK_DEV_URL', default='http://223.254.131.55:8001')
+WEBPACK_DEV_URL = env.str('WEBPACK_DEV_URL', default='https://www.tinyrfequip.com')
 
 
 SENTRY_DSN = env.str('SENTRY_DSN', '')
@@ -511,7 +511,7 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'  # for the iframe-embedded django admin
 
 CMS_PERMISSION = True
 
-LANGUAGE_CODE = "zh-hans"
+LANGUAGE_CODE = "en"
 
 LANGUAGES = [
     ('en', "English"),

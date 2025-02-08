@@ -36,6 +36,18 @@ body {
 //     position:fixed;left:0px;top:40px;z-index:200;width:100%;
 // }
 // 首页
+.home-slide{
+    height: 300px;
+    width: 100%;
+    .carousel-inner{
+      height: 300px;
+      width: 100%;
+      img{
+       height: 300px;
+       width: 100%;
+      }
+    }
+  }
 .home {
   .products {
 
@@ -50,7 +62,7 @@ body {
   }
 
   .about {
-    background: url('http://223.254.131.55:8001/static/global/img/about_our.png');
+    background: url('http://223.254.131.55/static/global/img/about_our.png');
     height: 100%;
     width: 100%;
     padding: 3rem 1.5rem;
@@ -95,6 +107,7 @@ body {
 .my-products-views {
   .row {
     margin: 0 auto;
+    justify-content: flex-start;
   }
 
   .card {
