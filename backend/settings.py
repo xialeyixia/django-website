@@ -694,6 +694,7 @@ LINK_ALL_ENABLE_BUTTON_PLUGIN = True
 
 # django-filer
 THUMBNAIL_HIGH_RESOLUTION = True
+#THUMBNAIL_HIGH_RESOLUTION = False
 THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.colorspace',
     'easy_thumbnails.processors.autocrop',

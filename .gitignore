@@ -21,3 +21,5 @@ mediaw/
 .DS_Store
 .divio
 .local-env
+
+nohup.out
