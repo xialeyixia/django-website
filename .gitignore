@@ -9,12 +9,10 @@ __pycache__/
 *.mo
 data/
 data.tar.gz
-backend/static_collected/
 backend/.local-env
 backend/addons-dev
 .venv
 
-mediaw/
 
 # dev files
 .idea/
