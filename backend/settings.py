@@ -511,6 +511,8 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'  # for the iframe-embedded django admin
 
 CMS_PERMISSION = True
 
+USE_I18N = False
+
 LANGUAGE_CODE = "en"
 
 LANGUAGES = [
